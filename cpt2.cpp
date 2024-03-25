@@ -6,6 +6,7 @@ void sizes(){
     cout << " based on the question asked" << endl;
 
 }
+//make new variables to create the other game modes
 
 int main(){
     int choice;
@@ -18,9 +19,11 @@ int main(){
     if(choice == 1){
         cout << "You chose the Sizes game!" << endl;
     }
+    //game where it gives a city and the used guesses the country based on the city
     else if(choice == 2){
         cout << "You chose the Which Country game!" << endl;
     }
+    //gives a country and then the user guesses the city
     else if(choice == 3){
         cout << "You chose the Countries Largest City game!" << endl;
     }
