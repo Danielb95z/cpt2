@@ -35,7 +35,7 @@ void sizes(){
 	randnum2 = randnum2 % range;
 	printf("%s?\n", cities[randnum2].c_str());
     cout << "Your Answer(Y/N): ";
-    cin >> input;
+    getline(cin, input);
     //cin.ignore();
     if(randnum1 < randnum2){
         if(input == "Y"){
