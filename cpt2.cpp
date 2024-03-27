@@ -34,10 +34,11 @@ void sizes(){
 	int randnum2 = rand();
 	randnum2 = randnum2 % range;
 	printf("%s?\n", cities[randnum2].c_str());
-    cout << "Your Answer: ";
+    cout << "Your Answer(Y/N): ";
     cin >> input;
+    //cin.ignore();
     if(randnum1 < randnum2){
-        if(input == "yes" || input == "Yes"){
+        if(input == "Y"){
             cout << "You are correct" << endl;
         }
         else{
@@ -45,7 +46,7 @@ void sizes(){
         }
     }
     if(randnum1 > randnum2){
-        if(input == "no" || input == "No"){
+        if(input == "N"){
             cout << "You are correct" << endl;
         }
         else{
