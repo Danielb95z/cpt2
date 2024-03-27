@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include <vector>
+#include <unistd.h>
 using namespace std;
 
 void sizes(){
@@ -12,21 +13,24 @@ void sizes(){
         "Paris","Bogota","Jakarta","Chennai","Lima","Bangkok","Seoul",
         "Nagoya","Hyderabad","London","Tehran","Chicago","Chengdu","Nanjing",
         "Wuhan","Ho Chi Minh City","Luanda","Ahmedabad","Kuala Lumpur",
-        "Xi'an","Hong Kong","Dongguan","Hangzhou","Foshan","Shenyang",
+        "Xian","Hong Kong","Dongguan","Hangzhou","Foshan","Shenyang",
         "Riyadh","Baghdad","Santiago","Surat","Madrid","Suzhou","Pune",
         "Harbin","Houston","Dallas","Toronto","Dar es Salaam","Miami",
         "Belo Horizonte","Singapore","Philadelphia","Atlanta","Fukuoka",
         "Khartoum","Barcelona","Johannesburg","Saint Petersburg","Qingdao",
         "Dalian","Washington DC","Yangon","Alexandria","Jinan","Guadalajara"};
-	string city_list[5] = {"CityA",
-						   "CityB",
-						   "CityC",
-						   "CityD",
-						   "CityE"};
     printf("In this game you are given two cities and choose the city"
     	   " based on the question asked\n");
-	printf("Is %s or %s bigger?\n", city_list[3].c_str(), city_list[1].c_str()); //just an example of how this could work
-
+	int range = 81;
+	srand(time(NULL));
+	int randnum1 = rand();
+	randnum1 = randnum1 % range;
+	printf("Is %s bigger than ", cities[randnum1].c_str());
+	sleep(1);
+	srand(time(NULL));
+	int randnum2 = rand();
+	randnum2 = randnum2 % range;
+	printf("%s?\n", cities[randnum2].c_str());
 }
 //make new variables to create the other game modes
 
