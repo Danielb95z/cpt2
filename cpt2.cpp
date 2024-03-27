@@ -19,8 +19,11 @@ void sizes(){
         "Belo Horizonte","Singapore","Philadelphia","Atlanta","Fukuoka",
         "Khartoum","Barcelona","Johannesburg","Saint Petersburg","Qingdao",
         "Dalian","Washington DC","Yangon","Alexandria","Jinan","Guadalajara"};
+
+
     printf("In this game you are given two cities and choose the city"
     	   " based on the question asked\n");
+    string input;
 	int range = 81;
 	srand(time(NULL));
 	int randnum1 = rand();
@@ -31,8 +34,27 @@ void sizes(){
 	int randnum2 = rand();
 	randnum2 = randnum2 % range;
 	printf("%s?\n", cities[randnum2].c_str());
+    cout << "Your Answer: ";
+    cin >> input;
+    if(randnum1 < randnum2){
+        if(input == "yes" || input == "Yes"){
+            cout << "You are correct" << endl;
+        }
+        else{
+            cout << "You are incorrect" << endl;
+        }
+    }
+    if(randnum1 > randnum2){
+        if(input == "no" || input == "No"){
+            cout << "You are correct" << endl;
+        }
+        else{
+            cout << "You are incorrect" << endl;
+        }
+    }
+
 }
-//make new variables to create the other game modes
+
 
 int main(){
     int choice;
