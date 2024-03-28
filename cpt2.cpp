@@ -24,16 +24,34 @@ void sizes(){
     	   " based on the question asked\n");
     string input;
 	int range = 81;
+
+
 	srand(time(NULL));
 	int randnum1 = rand();
 	randnum1 = randnum1 % range;
-	printf("Is %s bigger than ", cities[randnum1].c_str());
-	sleep(1);
+
+
+
 	srand(time(NULL));
 	int randnum2 = rand();
 	randnum2 = randnum2 % range;
+
+    while(randnum1 == randnum2){
+
+        srand(time(NULL));
+        randnum1 = rand();
+        randnum1 = randnum1 % range;
+
+        srand(time(NULL));
+        randnum2 = rand();
+        randnum2 = randnum2 % range;
+
+    }
+
+    printf("Is %s bigger than ", cities[randnum1].c_str());
 	printf("%s?\n", cities[randnum2].c_str());
     cout << "Your Answer(Y/N): ";
+
     //getline(cin, input); <-- This part isn't properly setting the player input into input (this makes the player always incorrect)
     //cin.ignore();
 	cin >> input;
