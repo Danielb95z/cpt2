@@ -20,8 +20,7 @@ void sizes(){
         "Khartoum","Barcelona","Johannesburg","Saint Petersburg","Qingdao",
         "Dalian","Washington DC","Yangon","Alexandria","Jinan","Guadalajara"};
 
-
-    printf("In this game you are given two cities and choose the city"
+    printf("\nIn this game you are given two cities and choose the city"
     	   " based on the question asked\n");
     string input;
 	int range = 81;
@@ -35,8 +34,9 @@ void sizes(){
 	randnum2 = randnum2 % range;
 	printf("%s?\n", cities[randnum2].c_str());
     cout << "Your Answer(Y/N): ";
-    getline(cin, input);
+    //getline(cin, input); <-- This part isn't properly setting the player input into input (this makes the player always incorrect)
     //cin.ignore();
+	cin >> input;
     if(randnum1 < randnum2){
         if(input == "Y"){
             cout << "You are correct" << endl;
@@ -53,29 +53,34 @@ void sizes(){
             cout << "You are incorrect" << endl;
         }
     }
+	sleep(2);
 
 }
 
 
 int main(){
-    int choice;
-    cout << "Welcome to the Cities Game!" << endl;
-    cout << "In this game you will answer questions about cities!" << endl;
-    cout << "Which game woud you like to play: " << endl;
-    cout << "Sizes(1)" << endl << "Which country(2)" << endl;
-    cout << "Countries Largest City(3)" << endl;
-    cin >> choice;
-    if(choice == 1){
-        cout << "You chose the Sizes game!" << endl;
-		sizes();
-    }
-    //game where it gives a city and the used guesses the country based on the city
-    else if(choice == 2){
-        cout << "You chose the Which Country game!" << endl;
-    }
-    //gives a country and then the user guesses the city
-    else if(choice == 3){
-        cout << "You chose the Countries Largest City game!" << endl;
-    }
-    return 0;
+    	int choice = 0;
+    	cout << "Welcome to the Cities Game!" << endl;
+    	cout << "In this game you will answer questions about cities!" << endl;
+	while(true){
+    	cout << "\nWhich game woud you like to play: " << endl;
+    	cout << "Sizes(1)" << endl << "Which country(2)" << endl;
+    	cout << "Countries Largest City(3)" << endl << "Stop Playing(4)" << endl;
+	    cin >> choice;
+	    if(choice == 1){
+	        cout << "You chose the Sizes game!" << endl;
+			sizes();
+	    }
+	    //game where it gives a city and the used guesses the country based on the city
+	    else if(choice == 2){
+	        cout << "You chose the Which Country game!" << endl;
+	    }
+	    //gives a country and then the user guesses the city
+	    else if(choice == 3){
+	        cout << "You chose the Countries Largest City game!" << endl;
+		}
+		else if(choice == 4){
+			return 0;
+		}
+	}
 }
