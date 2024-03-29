@@ -161,7 +161,7 @@ void sizes(){
 }
 
 
-int totalscore(int &score1, int &score2){
+int totalscore(int &score1, int &score2, int &score3){
     int tscore = score1 + score2 + score3;
     return tscore;
 }
@@ -191,7 +191,7 @@ int main(){
 			whatcapital();
 		}
 		else if(choice == 4){
-            int tscore = totalscore(score1,score2);
+            int tscore = totalscore(score1,score2,score3);
             cout << "Your Total score was " << to_string(tscore) << endl;
 			return 0;
 		}
