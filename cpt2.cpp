@@ -4,8 +4,7 @@
 #include <unistd.h>
 using namespace std;
 
-void sizes(){
-    vector<string> cities = {"Tokyo","Delhi","Shanghai","Sao Paulo",
+vector<string> cities = {"Tokyo","Delhi","Shanghai","Sao Paulo",
         "Mexico City","Cairo","Mumbai","Beijing","Dhaka","Osaka",
         "New York City","Karachi","Buenos Aires","Chongqing","Istanbul",
         "Kolkata","Manila","Lagos","Rio de Janeiro","Tianjin","Kinshasa",
@@ -20,6 +19,41 @@ void sizes(){
         "Khartoum","Barcelona","Johannesburg","Saint Petersburg","Qingdao",
         "Dalian","Washington DC","Yangon","Alexandria","Jinan","Guadalajara"};
 
+vector<string> countries = {"Japan","India","China","Brazil","Mexico","Egypt","India","China","Bangladesh","Japan","United States","Pakistan",
+    "Argentina","China","Turkey","India","Philippines","Nigeria","Brazil","China","Democratic Republic of the Congo", "China", "United States","Russia",
+    "China","Pakistan","India","France","Colombia","Indonesia","India","Peru","Thailand","South Korea","Japan","India","United Kingdom","Iran","United States",
+    "China","China","China","Vietnam","Angola","India","Malaysia","China","China","China","China","China","China","Saudi Arabia","Iraq","Chile","India","Spain",
+    "China","India","China","United States","United States","Canada","Tanzania","United States","Brazil","Singapore","United States","United States","Japan",
+    "Sudan","Spain","South Africa","Russia","China","China","United States", "Myanmar", "Egypt", "China","Mexico"};
+
+
+void whichcountry(){
+    printf("\nIn this game you are given a city and you have to"
+            " choose which country the city given belongs to");
+    string input;
+    int range = 81;
+
+    srand(time(NULL));
+    int randnum = rand();
+    randnum = randnum % range;
+
+	printf("\nWhere is %s located in? ", cities[randnum].c_str());
+    cout << "\nYour Answer(Case Sensitive): ";
+    cin.ignore();
+    getline(cin, input);
+
+    //Checking Process
+
+    if(input == countries[randnum]){
+            cout << "You are correct" << endl;
+        }
+        else{
+            cout << "You are incorrect" << endl;
+        }
+}
+
+
+void sizes(){
     printf("\nIn this game you are given two cities and choose the city"
     	   " based on the question asked\n");
     string input;
@@ -92,6 +126,7 @@ int main(){
 	    //game where it gives a city and the used guesses the country based on the city
 	    else if(choice == 2){
 	        cout << "You chose the Which Country game!" << endl;
+            whichcountry();
 	    }
 	    //gives a country and then the user guesses the city
 	    else if(choice == 3){
