@@ -90,53 +90,56 @@ int whichcountry(int score){
 }
 
 
-int sizes(int score){
-    printf("\nIn this game you are given two cities and choose the city"
-    	   " based on the question asked\n");
-    string input;
-	int range = 81;
-	int randnum1 = 1;
-	int randnum2 = 1;
+int sizes(int score, bool printscore){
+	if(!printscore){
+	    printf("\nIn this game you are given two cities and choose the city"
+	    	   " based on the question asked\n");
+	    string input;
+		int range = 81;
+		int randnum1 = 1;
+		int randnum2 = 1;
 
-	while(randnum1 == randnum2){
-		srand(time(NULL));
-		randnum1 = rand();
-		randnum1 = randnum1 % range;
+		while(randnum1 == randnum2){
+			srand(time(NULL));
+			randnum1 = rand();
+			randnum1 = randnum1 % range;
 
-		sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
+			sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
 
-		srand(time(NULL));
-		randnum2 = rand();
-		randnum2 = randnum2 % range;
+			srand(time(NULL));
+			randnum2 = rand();
+			randnum2 = randnum2 % range;
+		}
+
+	    printf("Is %s bigger than ", cities[randnum1].c_str());
+		printf("%s?\n", cities[randnum2].c_str());
+	    cout << "Your Answer(Y/N): ";
+
+		cin >> input;
+	    if(randnum1 < randnum2){
+	        if(input == "Y"){
+	            cout << "You are correct" << endl;
+	            return score + 1;
+	        }
+	        else{
+	            cout << "You are incorrect" << endl;
+				return score - 1;
+	        }
+	    }
+	    if(randnum1 > randnum2){
+	        if(input == "N"){
+	            cout << "You are correct" << endl;
+				return score + 1;
+	        }
+	        else{
+	            cout << "You are incorrect" << endl;
+				return score - 1;
+	        }
+	    }
 	}
-
-    printf("Is %s bigger than ", cities[randnum1].c_str());
-	printf("%s?\n", cities[randnum2].c_str());
-    cout << "Your Answer(Y/N): ";
-
-    //getline(cin, input); <-- This part isn't properly setting the player input into input (this makes the player always incorrect)
-    //cin.ignore();
-	cin >> input;
-    if(randnum1 < randnum2){
-        if(input == "Y"){
-            cout << "You are correct" << endl;
-            return score + 1;
-        }
-        else{
-            cout << "You are incorrect" << endl;
-			return score - 1;
-        }
-    }
-    if(randnum1 > randnum2){
-        if(input == "N"){
-            cout << "You are correct" << endl;
-			return score + 1;
-        }
-        else{
-            cout << "You are incorrect" << endl;
-			return score - 1;
-        }
-    }
+	else{
+		printf("\nYou current score is %d!\n", score);
+	}
 	return 0;//<-- Annoying error prevention :)
 }
 
@@ -148,13 +151,15 @@ int main(){
     	cout << "Welcome to the Cities Game!" << endl;
     	cout << "In this game you will answer questions about cities!" << endl;
 	while(true){
+        int tscore = score1 + score2 + score3;
     	cout << "\nWhich game woud you like to play: " << endl;
     	cout << "Sizes(1)" << endl << "Which country(2)" << endl;
-    	cout << "Country's Capital(3)" << endl << "Stop Playing(4)" << endl;
+    	cout << "Country's Capital(3)" << endl;
+		cout << "View Score(4)" << endl << "Stop Playing(5)" << endl;
 	    cin >> choice;
 	    if(choice == 1){
 	        cout << "You chose the Sizes game!" << endl;
-			score1 = sizes(score1);
+			score1 = sizes(score1, false);
 			sleep(2);
 	    }
 	    //game where it gives a city and the used guesses the country based on the city
@@ -170,7 +175,9 @@ int main(){
 			sleep(2);
 		}
 		else if(choice == 4){
-            int tscore = score1 + score2 + score3;
+			sizes(tscore, true); 
+		}
+		else if(choice == 5){
             printf("Your Total score is %d!\n", tscore);
 			return 0;
 		}
