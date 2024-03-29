@@ -6,6 +6,7 @@ using namespace std;
 
 int score1 = 0;
 int score2 = 0;
+int score3 = 0;
 
 vector<string> cities = {"Tokyo","Delhi","Shanghai","Sao Paulo",
         "Mexico City","Cairo","Mumbai","Beijing","Dhaka","Osaka",
@@ -33,33 +34,35 @@ vector<string> countries2 = {"China", "India", "United States", "Indonesia", "Pa
 	"Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "Egypt", "Vietnam", "Democratic Repulic of the Congo", "Turkey",
 	"Iran", "Germany", "Thailand", "France", "United Kingdom", "Tanzania", "South Africa", "Italy", "Kenya", "Myanmar", "South Korea",
 	"Colombia", "Spain", "Uganda", "Argentina", "Sudan", "Algeria", "Ukraine", "Iraq", "Afghanistan", "Canada", "Poland",
-	"Morocco", "Saudi Arabia", "Uzbekistan", "Angola", "Peru", "Malaysia", "Mozambique", "Ghana", "Yemen", "Nepal", "Venezuela"};
+	"Morocco", "Saudi Arabia", "Uzbekistan", "Angola", "Peru", "Malaysia", "Mozambique", "Ghana", "Nepal", "Venezuela"};
 
-vector<string> capitals = {"Beijing", "New Delhi", "Washington D.C.", "Jakarta", "Islamabad", "Brasilia", "Abuja", "Dhaka",
+vector<string> capitals = {"Beijing", "New Delhi", "Washington DC", "Jakarta", "Islamabad", "Brasilia", "Abuja", "Dhaka",
 	"Moscow", "Mexico City", "Tokyo", "Addis Ababa", "Manila", "Cairo", "Hanoi", "Kinshasa", "Ankara", "Tehran", "Berlin",
 	"Bangkok", "Paris", "London", "Dodoma", "Cape Town", "Rome", "Nairobi", "Naypyidaw", "Seoul", "Bogota", "Madrid", "Kampala",
 	"Buenos Aires", "Khartoum", "Algiers", "Kyiv", "Baghdad", "Kabul", "Ottawa", "Warsaw", "Rabat", "Riyadh", "Tashkent",
-	"Luanda", "Lima", "Kuala Lumpur", "Maputo", "Accra", "Sana'a", "Kathmandu", "Caracas"};
+	"Luanda", "Lima", "Kuala Lumpur", "Maputo", "Accra", "Kathmandu", "Caracas"};
 
 void whatcapital(){
 	printf("\nIn this game you have to guess the capital of the given country.\n");
 
-	int range = 50;
+	int range = 49;
 	srand(time(NULL));
 	int randnum = rand();
 	randnum = randnum % range;
-	
+
 	printf("What is the capital of %s?", countries2[randnum].c_str());
-	printf("\nYour answer here (only use alphabet, periods, and apostrophes, case sensitive): ");
+	printf("\nYour answer here (only use alphabet, case sensitive): ");
 	string input;
 	cin.ignore();
 	getline(cin, input);
 
 	if(input == capitals[randnum]){
 		printf("\nYou are correct!\n");
+        score3 += 1;
 	}
 	else{
 		printf("\nYou are incorrect.\n");
+        score3 -= 1;
 	}
 	sleep(2);
 }
@@ -90,6 +93,7 @@ void whichcountry(){
         score2 -= 1;
     }
 	printf("Your score for game 2 is %d!", score2);
+    sleep(2);
 }
 
 
@@ -103,7 +107,7 @@ void sizes(){
 	srand(time(NULL));
 	int randnum1 = rand();
 	randnum1 = randnum1 % range;
-	
+
 	sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
 
 	srand(time(NULL));
@@ -157,7 +161,7 @@ void sizes(){
 
 
 int totalscore(int &score1, int &score2){
-    int tscore = score1 + score2;
+    int tscore = score1 + score2 + score3;
     return tscore;
 }
 
