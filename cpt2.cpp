@@ -89,15 +89,6 @@ void whichcountry(){
             cout << "You are incorrect" << endl;
             score2 -= 1;
         }
-<<<<<<< HEAD
-	sleep(2);
-=======
-
-    cout << "Your score for game_2 is " << to_string(score2) << endl;
-    sleep(2);
-
-
->>>>>>> 2311da5ee09e275601bf6ae6d2cbf02be5b7818e
 }
 
 
