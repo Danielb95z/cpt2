@@ -26,6 +26,40 @@ vector<string> countries = {"Japan","India","China","Brazil","Mexico","Egypt","I
     "China","India","China","United States","United States","Canada","Tanzania","United States","Brazil","Singapore","United States","United States","Japan",
     "Sudan","Spain","South Africa","Russia","China","China","United States", "Myanmar", "Egypt", "China","Mexico"};
 
+vector<string> countries2 = {"China", "India", "United States", "Indonesia", "Pakistan", "Brazil", "Nigeria", "Bangladesh",
+	"Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "Egypt", "Vietnam", "Democratic Repulic of the Congo", "Turkey",
+	"Iran", "Germany", "Thailand", "France", "United Kingdom", "Tanzania", "South Africa", "Italy", "Kenya", "Myanmar", "South Korea",
+	"Colombia", "Spain", "Uganda", "Argentina", "Sudan", "Algeria", "Ukraine", "Iraq", "Afghanistan", "Canada", "Poland",
+	"Morocco", "Saudi Arabia", "Uzbekistan", "Angola", "Peru", "Malaysia", "Mozambique", "Ghana", "Yemen", "Nepal", "Venezuela"};
+
+vector<string> capitals = {"Beijing", "New Delhi", "Washington D.C.", "Jakarta", "Islamabad", "Brasilia", "Abuja", "Dhaka",
+	"Moscow", "Mexico City", "Tokyo", "Addis Ababa", "Manila", "Cairo", "Hanoi", "Kinshasa", "Ankara", "Tehran", "Berlin",
+	"Bangkok", "Paris", "London", "Dodoma", "Cape Town", "Rome", "Nairobi", "Naypyidaw", "Seoul", "Bogota", "Madrid", "Kampala",
+	"Buenos Aires", "Khartoum", "Algiers", "Kyiv", "Baghdad", "Kabul", "Ottawa", "Warsaw", "Rabat", "Riyadh", "Tashkent",
+	"Luanda", "Lima", "Kuala Lumpur", "Maputo", "Accra", "Sana'a", "Kathmandu", "Caracas"};
+
+void whatcapital(){
+	printf("\nIn this game you have to guess the capital of the given country.\n");
+
+	int range = 50;
+	srand(time(NULL));
+	int randnum = rand();
+	randnum = randnum % range;
+	
+	printf("What is the capital of %s?", countries2[randnum].c_str());
+	printf("\nYour answer here (only use alphabet, periods, and apostrophes, case sensitive): ");
+	string input;
+	cin.ignore();
+	getline(cin, input);
+
+	if(input == capitals[randnum]){
+		printf("\nYou are correct!\n");
+	}
+	else{
+		printf("\nYou are incorrect.\n");
+	}
+	sleep(2);
+}
 
 void whichcountry(){
     printf("\nIn this game you are given a city and you have to"
@@ -50,6 +84,7 @@ void whichcountry(){
         else{
             cout << "You are incorrect" << endl;
         }
+	sleep(2);
 }
 
 
@@ -63,8 +98,8 @@ void sizes(){
 	srand(time(NULL));
 	int randnum1 = rand();
 	randnum1 = randnum1 % range;
-
-
+	
+	sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
 
 	srand(time(NULL));
 	int randnum2 = rand();
@@ -117,7 +152,7 @@ int main(){
 	while(true){
     	cout << "\nWhich game woud you like to play: " << endl;
     	cout << "Sizes(1)" << endl << "Which country(2)" << endl;
-    	cout << "Countries Largest City(3)" << endl << "Stop Playing(4)" << endl;
+    	cout << "Country's Capital(3)" << endl << "Stop Playing(4)" << endl;
 	    cin >> choice;
 	    if(choice == 1){
 	        cout << "You chose the Sizes game!" << endl;
@@ -130,7 +165,8 @@ int main(){
 	    }
 	    //gives a country and then the user guesses the city
 	    else if(choice == 3){
-	        cout << "You chose the Countries Largest City game!" << endl;
+	        cout << "You chose the Country's Capital game!" << endl;
+			whatcapital();
 		}
 		else if(choice == 4){
 			return 0;
