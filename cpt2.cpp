@@ -64,6 +64,7 @@ void whatcapital(){
 		printf("\nYou are incorrect.\n");
         score3 -= 1;
 	}
+    printf("Your score for this game 3 is %d!", score3);
 	sleep(2);
 }
 
