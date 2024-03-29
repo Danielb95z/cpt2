@@ -84,11 +84,12 @@ void whichcountry(){
     if(input == countries[randnum]){
             cout << "You are correct" << endl;
             score2 += 1;
-        }
-        else{
-            cout << "You are incorrect" << endl;
-            score2 -= 1;
-        }
+    }
+    else{
+        cout << "You are incorrect" << endl;
+        score2 -= 1;
+    }
+	printf("Your score for game 2 is %d!", score2);
 }
 
 
