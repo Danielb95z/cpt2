@@ -4,6 +4,9 @@
 #include <unistd.h>
 using namespace std;
 
+int score1 = 0;
+int score2 = 0;
+
 vector<string> cities = {"Tokyo","Delhi","Shanghai","Sao Paulo",
         "Mexico City","Cairo","Mumbai","Beijing","Dhaka","Osaka",
         "New York City","Karachi","Buenos Aires","Chongqing","Istanbul",
@@ -80,11 +83,21 @@ void whichcountry(){
 
     if(input == countries[randnum]){
             cout << "You are correct" << endl;
+            score2 += 1;
         }
         else{
             cout << "You are incorrect" << endl;
+            score2 -= 1;
         }
+<<<<<<< HEAD
 	sleep(2);
+=======
+
+    cout << "Your score for game_2 is " << to_string(score2) << endl;
+    sleep(2);
+
+
+>>>>>>> 2311da5ee09e275601bf6ae6d2cbf02be5b7818e
 }
 
 
@@ -127,21 +140,33 @@ void sizes(){
     if(randnum1 < randnum2){
         if(input == "Y"){
             cout << "You are correct" << endl;
+            score1 += 1;
         }
         else{
             cout << "You are incorrect" << endl;
+            score1 -= 1;
         }
     }
     if(randnum1 > randnum2){
         if(input == "N"){
             cout << "You are correct" << endl;
+            score1 += 1;
         }
         else{
             cout << "You are incorrect" << endl;
+            score1 -= 1;
         }
     }
+
+    cout << "Your score for game_1 is " << to_string(score1) << endl;
 	sleep(2);
 
+}
+
+
+int totalscore(int &score1, int &score2){
+    int tscore = score1 + score2;
+    return tscore;
 }
 
 
@@ -169,6 +194,8 @@ int main(){
 			whatcapital();
 		}
 		else if(choice == 4){
+            int tscore = totalscore(score1,score2);
+            cout << "Your Total score was " << to_string(tscore) << endl;
 			return 0;
 		}
 	}
