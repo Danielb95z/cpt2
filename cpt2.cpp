@@ -4,10 +4,6 @@
 #include <unistd.h>
 using namespace std;
 
-int score1 = 0;
-int score2 = 0;
-int score3 = 0;
-
 vector<string> cities = {"Tokyo","Delhi","Shanghai","Sao Paulo",
         "Mexico City","Cairo","Mumbai","Beijing","Dhaka","Osaka",
         "New York City","Karachi","Buenos Aires","Chongqing","Istanbul",
@@ -42,7 +38,7 @@ vector<string> capitals = {"Beijing", "New Delhi", "Washington DC", "Jakarta", "
 	"Buenos Aires", "Khartoum", "Algiers", "Kyiv", "Baghdad", "Kabul", "Ottawa", "Warsaw", "Rabat", "Riyadh", "Tashkent",
 	"Luanda", "Lima", "Kuala Lumpur", "Maputo", "Accra", "Kathmandu", "Caracas"};
 
-void whatcapital(){
+int whatcapital(int score){
 	printf("\nIn this game you have to guess the capital of the given country.\n");
 
 	int range = 49;
@@ -58,17 +54,15 @@ void whatcapital(){
 
 	if(input == capitals[randnum]){
 		printf("\nYou are correct!\n");
-        score3 += 1;
+        return score + 1;
 	}
 	else{
 		printf("\nYou are incorrect.\n");
-        score3 -= 1;
+        return score - 1;
 	}
-    printf("Your score for this game 3 is %d!", score3);
-	sleep(2);
 }
 
-void whichcountry(){
+int whichcountry(int score){
     printf("\nIn this game you are given a city and you have to"
             " choose which country the city given belongs to");
     string input;
@@ -87,45 +81,34 @@ void whichcountry(){
 
     if(input == countries[randnum]){
             cout << "You are correct" << endl;
-            score2 += 1;
+            return score + 1;
     }
     else{
         cout << "You are incorrect" << endl;
-        score2 -= 1;
+        return score - 1;
     }
-	printf("Your score for game 2 is %d!", score2);
-    sleep(2);
 }
 
 
-void sizes(){
+int sizes(int score){
     printf("\nIn this game you are given two cities and choose the city"
     	   " based on the question asked\n");
     string input;
 	int range = 81;
+	int randnum1 = 1;
+	int randnum2 = 1;
 
+	while(randnum1 == randnum2){
+		srand(time(NULL));
+		randnum1 = rand();
+		randnum1 = randnum1 % range;
 
-	srand(time(NULL));
-	int randnum1 = rand();
-	randnum1 = randnum1 % range;
+		sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
 
-	sleep(1); //<-- This sleep is here so the random number generator works! DONT REMOVE IT
-
-	srand(time(NULL));
-	int randnum2 = rand();
-	randnum2 = randnum2 % range;
-
-    while(randnum1 == randnum2){
-
-        srand(time(NULL));
-        randnum1 = rand();
-        randnum1 = randnum1 % range;
-
-        srand(time(NULL));
-        randnum2 = rand();
-        randnum2 = randnum2 % range;
-
-    }
+		srand(time(NULL));
+		randnum2 = rand();
+		randnum2 = randnum2 % range;
+	}
 
     printf("Is %s bigger than ", cities[randnum1].c_str());
 	printf("%s?\n", cities[randnum2].c_str());
@@ -137,37 +120,30 @@ void sizes(){
     if(randnum1 < randnum2){
         if(input == "Y"){
             cout << "You are correct" << endl;
-            score1 += 1;
+            return score + 1;
         }
         else{
             cout << "You are incorrect" << endl;
-            score1 -= 1;
+			return score - 1;
         }
     }
     if(randnum1 > randnum2){
         if(input == "N"){
             cout << "You are correct" << endl;
-            score1 += 1;
+			return score + 1;
         }
         else{
             cout << "You are incorrect" << endl;
-            score1 -= 1;
+			return score - 1;
         }
     }
-
-    cout << "Your score for game_1 is " << to_string(score1) << endl;
-	sleep(2);
-
+	return 0;//<-- Annoying error prevention :)
 }
-
-
-int totalscore(int &score1, int &score2, int &score3){
-    int tscore = score1 + score2 + score3;
-    return tscore;
-}
-
 
 int main(){
+		int score1 = 0;
+		int score2 = 0;
+		int score3 = 0;
     	int choice = 0;
     	cout << "Welcome to the Cities Game!" << endl;
     	cout << "In this game you will answer questions about cities!" << endl;
@@ -178,21 +154,24 @@ int main(){
 	    cin >> choice;
 	    if(choice == 1){
 	        cout << "You chose the Sizes game!" << endl;
-			sizes();
+			score1 = sizes(score1);
+			sleep(2);
 	    }
 	    //game where it gives a city and the used guesses the country based on the city
 	    else if(choice == 2){
 	        cout << "You chose the Which Country game!" << endl;
-            whichcountry();
+            score2 = whichcountry(score2);
+			sleep(2);
 	    }
 	    //gives a country and then the user guesses the city
 	    else if(choice == 3){
 	        cout << "You chose the Country's Capital game!" << endl;
-			whatcapital();
+			score3 = whatcapital(score3);
+			sleep(2);
 		}
 		else if(choice == 4){
-            int tscore = totalscore(score1,score2,score3);
-            cout << "Your Total score was " << to_string(tscore) << endl;
+            int tscore = score1 + score2 + score3;
+            printf("Your Total score is %d!\n", tscore);
 			return 0;
 		}
 	}
